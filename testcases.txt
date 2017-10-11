@@ -1,0 +1,41 @@
+Workload (E)
+-------------------------------------------------------------------------------------------
+In this workload, we treid to free x followed by another free x.
+We tried this workload in order to see if it gives any error message when we free x twice.
+Error message:
+Error:oops!! Worng Way it is. Cannot free the pointer twice. In file mymalloc.c at line 242.
+-------------------------------------------------------------------------------------------
+
+Workload (F)
+-----------------------------------------------------------------------------------------------------------------
+In this workload,we created int pointer y "(int *y)",and then we tried to free it "(free(y))" without allocating it.
+we tried this workload in order to see if it gives any error message when we free pointer without allocating it..
+Error meaasage:
+Error:oops!! Cannot free pointer that was not allocated. In file mymalloc.c at line 236.
+------------------------------------------------------------------------------------------------------------------
+
+Extra testcases that we tried: 1) with the code that has error and 2) with the code that does not have error
+(We tried this testcases and then deleted it, so you will not see this in our memgrind.c)
+------------------------------------------------------------------------------------------------------------
+1)
+
+int *x = malloc(sizeof(int));
+free(x);
+
+int y;
+free(&y);
+
+char *t = malloc(sizeof(char*));
+free(t);
+
+Error:oops!! Cannot free pointer that was not allocated. In file mymalloc.c at line 236.
+
+2)
+int *x = malloc(sizeof(int));
+free(x);
+
+x = malloc(sizeof(int));
+free(x);
+
+Note: There was no error message since the Input was freed successfully.
+----------------------------------------------------------------------------------------------------------------
